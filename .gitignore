@@ -1,0 +1,66 @@
+# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+
+# dependencies
+node_modules/
+
+# Expo
+.expo/
+.expo-shared/
+dist/
+web-build/
+expo-env.d.ts
+
+# Native
+.kotlin/
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.keystore
+
+# Metro
+.metro-health-check*
+
+# debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+*.log
+
+# macOS
+.DS_Store
+*.pem
+Thumbs.db
+
+# local env files
+.env
+.env*.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# typescript
+*.tsbuildinfo
+
+# generated native folders
+/ios
+/android
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.code-workspace
+
+# Firebase API Keys
+EXPO_PUBLIC_FIREBASE_API_KEY=AIzaSyBQoEAZCLbRCu7OXQl0qTKCN24aKpY3Ym8
+EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN=validmoviez-5eb8a.firebaseapp.com
+EXPO_PUBLIC_FIREBASE_PROJECT_ID=validmoviez-5eb8a
+EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET=validmoviez-5eb8a.firebasestorage.app
+EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=1055656934218
+EXPO_PUBLIC_FIREBASE_APP_ID=1:1055656934218:web:8ce40dc08d47c6752f9fb3
+EXPO_PUBLIC_FIREBASE_MEASUREMENT_ID=G-8Z4B04YXYV
