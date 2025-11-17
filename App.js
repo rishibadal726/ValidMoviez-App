@@ -80,10 +80,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const resetPassword = async (email) => {
-    return await sendPasswordResetEmail(auth, email, {
-      url: 'https://your-app.com/login',
-      handleCodeInApp: false
-    });
+    return await sendPasswordResetEmail(auth, email);
   };
 
   const updateUserProfile = async (displayName) => {
