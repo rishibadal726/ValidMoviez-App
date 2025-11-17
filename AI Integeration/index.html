@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ValidMovies App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="phone-frame">
+        <div class="screen active welcome-screen" id="welcome">
+            <h1 class="welcome-title">
+                <span class="typing-text" id="typingText">Welcome to<br> ValidMoviez!</span>
+            </h1>
+            <p class="welcome-subtitle">Let's take this quick quiz to personalize your feed</p>
+            <button class="glow-button" onclick="goToStep(1)">Get Started ✨</button>
+        </div>
+
+        <div class="screen quiz-screen" id="step1">
+            <div class="status-bar">Step 1 of 3</div>
+            <h2 class="quiz-title">What are your preferred genres?</h2>
+            <div class="options-container" id="genres">
+                <div class="option-card" onclick="toggleOption(this)">Action</div>
+                <div class="option-card" onclick="toggleOption(this)">Comedy</div>
+                <div class="option-card" onclick="toggleOption(this)">Drama</div>
+                <div class="option-card" onclick="toggleOption(this)">Horror</div>
+                <div class="option-card" onclick="toggleOption(this)">Sci-Fi</div>
+                <div class="option-card" onclick="toggleOption(this)">Romance</div>
+                <div class="option-card" onclick="toggleOption(this)">Thriller</div>
+                <div class="option-card" onclick="toggleOption(this)">Documentary</div>
+            </div>
+            <button class="next-button" id="next1" onclick="goToStep(2)" disabled>Next →</button>
+        </div>
+        <div class="screen quiz-screen" id="step2">
+            <div class="status-bar">Step 2 of 3</div>
+            <h2 class="quiz-title">What's your typical movie mood?</h2>
+            <div class="options-container">
+                <div class="option-card" onclick="toggleOption(this)">Something thrilling</div>
+                <div class="option-card" onclick="toggleOption(this)">Light and fun</div>
+                <div class="option-card" onclick="toggleOption(this)">Deep and thought-provoking</div>
+                <div class="option-card" onclick="toggleOption(this)">Relaxing and easy</div>
+                <div class="option-card" onclick="toggleOption(this)">Edge-of-your-seat excitement</div>
+            </div>
+            <button class="next-button" id="next2" onclick="goToStep(3)" disabled>Next →</button>
+        </div>
+        <div class="screen quiz-screen" id="step3">
+            <div class="status-bar">Step 3 of 3</div>
+            <h2 class="quiz-title">Which era do you prefer?</h2>
+            <div class="options-container">
+                <div class="option-card" onclick="toggleOption(this)">Classic (Before 1980)</div>
+                <div class="option-card" onclick="toggleOption(this)">80s & 90s</div>
+                <div class="option-card" onclick="toggleOption(this)">2000s</div>
+                <div class="option-card" onclick="toggleOption(this)">2010s</div>
+                <div class="option-card" onclick="toggleOption(this)">Latest releases</div>
+                <div class="option-card" onclick="toggleOption(this)">I love all eras!</div>
+            </div>
+            <button class="next-button" id="next3" onclick="goToChat()" disabled>Finish & Start Chatting →</button>
+        </div>
+
+        <div class="screen chat-screen" id="chat">
+            <div class="chat-header">
+                <div class="menu-button" onclick="showMenu()">&#9776;</div>
+                <button class="back-button" onclick="goToStep('welcome')">Back to Home</button>
+            </div>
+            
+            <div id="chatWelcomeContent">
+                <div class="welcome-message">
+                    <h1>Good to see you again!</h1>
+                    <p>I've got fresh movie suggestions waiting for you, just tell me what kind of vibe you're in the mood for today!</p>
+                </div>
+                <div class="prompt-cards">
+                    <div class="prompt-card">
+                        <h3>Want unknown picks?</h3>
+                        <p>Picks you might love</p>
+                        <button class="prompt-button">Get Prompt</button>
+                    </div>
+                    <div class="prompt-card">
+                        <h3>In the mood to try sci-fi tonight?</h3>
+                        <p>Let me find something that fits your taste perfectly!</p>
+                        <button class="prompt-button" onclick="showMovieSuggestion()">See Suggestions</button>
+                    </div>
+                    <div class="prompt-card">
+                        <h3>Want something new?</h3>
+                        <p>This week's latest releases</p>
+                        <button class="prompt-button">Read More</button>
+                    </div>
+                </div>
+                <div class="swipe-hint">← Swipe to view more prompts! →</div>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                </div>
+            
+            <div class="suggested-replies" id="suggestedReplies">
+                </div>
+
+            <div class="chat-input-container">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Type a message...">
+                <button class="send-button" id="sendBtn">➤</button>
+            </div>
+        </div>
+        
+        <div class="screen video-screen" id="videoPlayerScreen">
+            <video src="https://archive.org/download/NASA-Ultra-High-Definition/ISS%204K%20Crew%20Earth%20Observations.mp4" autoplay loop muted playsinline></video>
+            <button class="minimize-button" onclick="closeTrailer()">—</button>
+        </div>
+        
+        <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+        
+        <div class="screen side-menu" id="sideMenu">
+            <div class="side-menu-header">
+                <h2>Menu</h2>
+                <button class="close-button" onclick="closeMenu()">×</button>
+            </div>
+            
+            <div class="side-menu-nav">
+                <span class="nav-tab active" onclick="showMenuPage(this, 'profile-page')">My Profile</span>
+                <span class="nav-tab" onclick="showMenuPage(this, 'watchlist-page')">Watchlist</span>
+                <span class="nav-tab" onclick="showMenuPage(this, 'history-page')">History</span>
+            </div>
+            
+            <div class="side-menu-content">
+                
+                <div class="menu-page active" id="profile-page">
+                    <h3 class="menu-section-title">Saved Preferences</h3>
+                    <p>This is what we're using to find your recommendations.</p>
+                    <br>
+                    <h3 class="menu-section-title">Your Genres</h3>
+                    <div class="preference-tags" id="genre-tags">
+                        </div>
+                    <br>
+                    <h3 class="menu-section-title">Your Mood</h3>
+                    <div class="preference-tags" id="mood-tags">
+                        </div>
+                    <button class="modify-button" onclick="modifyPreferences()">Modify Preferences</button>
+                </div>
+                
+                <div class="menu-page" id="watchlist-page">
+                    <h3 class="menu-section-title">My Watchlist</h3>
+                    <div class="movie-card-small" id="savedMovie">
+                        <img src="https://m.media-amazon.com/images/M/MV5BZGRlMDA5NGYtOWNmYy00YWI3LWFlMzMtYjlhMTkxZmI1NDRjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" />
+                        <div class="movie-card-info">
+                            <h3>The Astronaut (2025)</h3>
+                            <p>When an astronaut crash-lands back to Earth, a general puts her in quarantine...</p>
+                        </div>
+                    </div>
+                    <p id="emptyWatchlistText">Your watchlist is empty. Save a movie from the chat!</p>
+                </div>
+                
+                <div class="menu-page" id="history-page">
+                    <h3 class="menu-section-title">Today</h3>
+                    <div class="chat-history-item" onclick="loadChatHistory('sci-fi')">
+                        <span class="history-title">Sci-fi Recommendations</span>
+                        <span class="history-date">Nov 17, 2025</span>
+                    </div>
+                    <h3 class="menu-section-title">Yesterday</h3>
+                    <div class="chat-history-item" onclick="loadChatHistory('90s-comedies')">
+                        <span class="history-title">90s Comedies</span>
+                        <span class="history-date">Nov 16, 2025</span>
+                    </div>
+                     <div class="chat-history-item" onclick="loadChatHistory('thrillers')">
+                        <span class="history-title">Mind-bending Thrillers</span>
+                        <span class="history-date">Nov 16, 2025</span>
+                    </div>
+                     <h3 class="menu-section-title">Previous 7 Days</h3>
+                     <div class="chat-history-item" onclick="loadChatHistory('kate-mara')">
+                        <span class="history-title">Movies with Kate Mara</span>
+                        <span class="history-date">Nov 15, 2025</span>
+                    </div>
+                     <div class="chat-history-item" onclick="loadChatHistory('lucky')">
+                        <span class="history-title">"I'm feeling lucky"</span>
+                        <span class="history-date">Nov 14, 2025</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+   <script src="AI.js"></script>
+</body>
+</html>
